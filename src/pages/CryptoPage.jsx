@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import { CryptoList } from '../components/CryptoList'
 import { SearchBar } from '../components/SearchBar'
 import { MarketOverview } from '../components/MarketOverview'
+import { MarketDistributionChart } from '../components/MarketDistributionChart'
+import { VolumeChart } from '../components/VolumeChart'
+import { TopMoversWidget } from '../components/TopMoversWidget'
 import { cryptos, getMarketStats } from '../data/crypto'
 
 export function CryptoPage() {
@@ -37,6 +40,17 @@ export function CryptoPage() {
         </div>
 
         <MarketOverview stats={marketStats} />
+
+        {/* Top Movers Section */}
+        <div className="mb-6">
+          <TopMoversWidget cryptos={cryptos} onCryptoClick={handleCryptoClick} />
+        </div>
+
+        {/* Charts Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          <MarketDistributionChart cryptos={cryptos} />
+          <VolumeChart cryptos={cryptos} />
+        </div>
 
         <div className="mb-6 max-w-md">
           <SearchBar
